@@ -28,12 +28,13 @@ void	philo_timestamp(t_philo *philo, char *action)
 	}
 	else
 	{
+		pthread_mutex_lock(&philo->data->writing);
 		if (philo->data->died)//just to check
 			return;
-		pthread_mutex_lock(&philo->data->writing);
 		printf("\033[1;39m%06u\033[0;39m  \033[1;96m%03d  \033[0;39m%s\n", \
 			time, philo->id + 1, action);
 		pthread_mutex_unlock(&philo->data->writing);
+
 		if(action[10] == 'e')
 		{
 			pthread_mutex_lock(&philo->data->meal);

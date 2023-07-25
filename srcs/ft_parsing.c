@@ -59,7 +59,7 @@ void ft_init_mutex(t_data *data)
     }
     pthread_mutex_init(&data->writing, NULL);
     pthread_mutex_init(&data->death, NULL);
-    pthread_mutex_init(&data->meal, NULL);
+    pthread_mutex_init(&data->meal, NULL);// every philo have his own nbr meal
     pthread_mutex_init(&data->lock, NULL);
     pthread_mutex_init(&data->time, NULL);
     // pthread_mutex_init(&data->print, NULL);
