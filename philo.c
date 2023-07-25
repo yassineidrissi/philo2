@@ -81,6 +81,8 @@ void ft_monitoring(t_data *data)
             pthread_mutex_unlock(&data->lock);
             // pthread_mutex_lock(&data->writing);
             // printf("make im here\n");
+            if (data->max_meals != 1 && meals >= data->max_meals)
+                return;
             philo_timestamp(&data->philo[i], PHILO_DIE);
             pthread_mutex_unlock(&data->writing);
             return ;
