@@ -33,9 +33,11 @@ void*   start_thread(void* arg)
 {
     t_philo *philo = (t_philo*)arg;
 
-     philo->last_meal = philo_get_time();
+    pthread_mutex_lock(&philo->data->time);
+    philo->last_meal = philo_get_time();
+    pthread_mutex_unlock(&philo->data->time);
     if (philo->id % 2 == 0)
-        usleep(30000);
+        usleep(300);
     while(1)
     {
         pthread_mutex_lock(&philo->data->fork[philo->id]);
@@ -71,7 +73,7 @@ void ft_monitoring(t_data *data)
         // printf("im here the eat_c is %d and last_meal is %d, and philo id is %d\n", eat_c, data->philo[i].last_meal, data->philo[i].id);
         if (eat_c >=  data->tm_die || ( data->max_meals != -1 && meals >= data->max_meals))
         {
-            printf("--%d , %d--\n", eat_c, data->philo[i].last_meal);
+            printf("--%d , %d-- and i %d\n", eat_c, data->philo[i].last_meal, i);
             // pthread_mutex_lock(&data->writing);
             // meals = data->philo[i % data->nb_philo].nb_meals;
             pthread_mutex_lock(&data->lock);
@@ -114,10 +116,10 @@ void init_threads(t_data * data)
     i = -1;
     while (++i < data->nb_philo)
     {
-        data->philo[i].last_meal = 0;
+        data->philo[i].last_meal = data->init_time;
         pthread_create(data->threads + i, NULL, start_thread, data->philo + i);
         // usleep(100);
-        pthread_detach(*(data->threads + i));
+        // pthread_detach(*(data->threads + i));
     }
     //! if there is a probleme sleep also here 
     // Pass the t_philo struct as the argument to the philosopher function
@@ -133,7 +135,7 @@ int main(int ac, char **av)
     if (ac != 6 && ac != 5)
         handl_errors(1);
     ft_parser(ac ,av, &data);
-    printf("initing threads the value of tm to eat is %d and for tm to sleep is %d\n", data.tm_die , data.tm_sleep);
+    // printf("initing threads the value of tm to eat is %d and for tm to sleep is %d\n", data.tm_die , data.tm_sleep);
     init_threads(&data);
     // ft_monitoring(&data);
     // printf("im working ");
