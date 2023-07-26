@@ -1,4 +1,4 @@
-SRCS = philo.c srcs/ft_parsing.c srcs/errors.c srcs/lib_src.c srcs/utils.c srcs/time.c srcs/print.c
+SRCS = philo.c srcs/ft_parsing.c srcs/errors.c srcs/lib_src.c srcs/time.c srcs/print.c
 
 OBJS			= $(SRCS:.c=.o)
 CC				= cc

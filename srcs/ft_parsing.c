@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 23:57:29 by yassine           #+#    #+#             */
-/*   Updated: 2023/07/19 15:42:44 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:17:40 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void ft_fill_params_master(int ac, char **av, t_data *data)
         else
             ft_fill_params_slive(ac, data, av, i);
     }
-    if (data->nb_philo < 1 || data->nb_philo > 200 || data->max_meals < -1 || data->tm_die < 0 || data->tm_eat < 0 || data->tm_sleep < 0)
+    if (data->nb_philo < 1 || data->nb_philo > 200 || (data->max_meals < 1 && ac == 6) || data->tm_die < 0 || data->tm_eat < 0 || data->tm_sleep < 0)
         handl_errors(1);
 }
 
