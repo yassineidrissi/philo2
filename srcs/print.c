@@ -22,8 +22,8 @@ void	philo_timestamp(t_philo *philo, char *action)
 	if (action[10] == 'd')
 	{
 		pthread_mutex_lock(&philo->data->writing);
-		printf("\033[1;39m%06u\033[0;39m  \033[1;96m%03d  \033[0;39m%s\n", \
-			time, philo->id + 1, action);
+		printf("\033[1;39m%06u\033[0;39m  \033[1;96m%03d  \033[0;39m%s\n", time, \
+			philo->id + 1, action);
 		return ;
 	}
 	else
@@ -31,8 +31,8 @@ void	philo_timestamp(t_philo *philo, char *action)
 		pthread_mutex_lock(&philo->data->writing);
 		if (philo->data->died)
 			return ;
-		printf("\033[1;39m%06u\033[0;39m  \033[1;96m%03d  \033[0;39m%s\n", \
-			time, philo->id + 1, action);
+		printf("\033[1;39m%06u\033[0;39m  \033[1;96m%03d  \033[0;39m%s\n", time, \
+			philo->id + 1, action);
 		pthread_mutex_unlock(&philo->data->writing);
 		if (action[10] == 'e')
 		{

@@ -12,7 +12,7 @@
 
 #include "../philo.h"
 
-int ft_isdigit(char c)
+int	ft_isdigit(char c)
 {
 	if (c > 47 && c < 58)
 		return (1);
@@ -30,11 +30,11 @@ int	ft_strisdigit(char *str)
 	return (1);
 }
 
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
-	int i;
-	int sign;
-	int res;
+	int	i;
+	int	sign;
+	int	res;
 
 	i = 0;
 	sign = 1;

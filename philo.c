@@ -17,20 +17,18 @@ void	*start_thread(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->data->time);
 	philo->last_meal = philo_get_time();
-	pthread_mutex_unlock(&philo->data->time);
 	if (philo->id % 2 == 0)
 		usleep(300);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->fork[philo->id]);
-		pthread_mutex_lock(&philo->data->fork[(philo->id + 1)
+		pthread_mutex_lock(&philo->data->fork[(philo->id + 1) \
 			% philo->data->nb_philo]);
 		philo_timestamp(philo, PHILO_TAKE_FORK);
 		philo_timestamp(philo, PHILO_EAT);
 		pthread_mutex_unlock(&philo->data->fork[philo->id]);
-		pthread_mutex_unlock(&philo->data->fork[(philo->id + 1)
+		pthread_mutex_unlock(&philo->data->fork[(philo->id + 1) \
 			% philo->data->nb_philo]);
 		philo_timestamp(philo, PHILO_SLEEP);
 		ft_usleep(philo->data->tm_sleep);
@@ -48,12 +46,8 @@ void	ft_monitoring(t_data *data)
 	i = -1;
 	while (++i < data->nb_philo)
 	{
-		pthread_mutex_lock(&data->time);
 		eat_c = philo_get_time() - data->philo[i].last_meal;
-		pthread_mutex_unlock(&data->time);
-		pthread_mutex_lock(&data->meal);
 		meals = data->philo[i].nb_meals;
-		pthread_mutex_unlock(&data->meal);
 		if (eat_c >= data->tm_die || (data->max_meals != -1
 				&& meals >= data->max_meals + 1))
 		{

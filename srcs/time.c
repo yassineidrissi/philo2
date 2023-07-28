@@ -20,12 +20,12 @@ useconds_t	philo_get_time(void)
 	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }
 
-int ft_usleep(useconds_t time)
+int	ft_usleep(useconds_t time)
 {
-    useconds_t	start;
+	useconds_t	start;
 
-    start = philo_get_time();
-    while (philo_get_time() - start < time)
-        usleep(100);
-    return (0);
+	start = philo_get_time();
+	while (philo_get_time() - start < time)
+		usleep(100);
+	return (0);
 }
