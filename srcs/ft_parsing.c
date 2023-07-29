@@ -39,14 +39,14 @@ void	ft_fill_params_master(int ac, char **av, t_data *data)
 	while (++i < ac)
 	{
 		if (!ft_strisdigit(av[i]))
-			handl_errors(1);
+			handl_errors(2);
 		else
 			ft_fill_params_slive(ac, data, av, i);
 	}
 	if (data->nb_philo < 1 || data->nb_philo > 200 || (data->max_meals < 1
 			&& ac == 6) || data->tm_die < 0 || data->tm_eat < 0
 		|| data->tm_sleep < 0)
-		handl_errors(1);
+		handl_errors(4);
 }
 
 void	ft_init_mutex(t_data *data)

@@ -18,10 +18,10 @@ void	handl_errors(int i)
 	printf("Error\n");
 	if (i == 1)
 		printf("Failed >> parametres unvalied \n");
-	else if (i == 3)
-		printf("Failed >> border unvalid\n");
+	else if (i == 2)
+		printf("Failed >> prametres are not numbers\n");
 	else if (i == 4)
-		printf("Failed >> Upper / Lower boarder is not valid\n");
+		printf("Failed >> the parameter are more than max value\n");
 	else if (i == 5)
 		printf("Failed >> side boarder not valid\n");
 	else if (i == 6)
